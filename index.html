@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Happy Birthday, Mi More!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Pacifico&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            color: #333;
+            text-align: center;
+        }
+
+        /* Portada */
+        #cover {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        h1 {
+            font-family: 'Pacifico', cursive;
+            font-size: 4rem;
+            color: #d23669;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+        .photo-frame {
+            border: 10px solid white;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            width: 300px;
+            height: 300px;
+            overflow: hidden;
+            margin: 20px;
+            z-index: 10;
+        }
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .message {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            margin-top: 20px;
+            z-index: 10;
+        }
+
+        /* Confeti (animación con JS) */
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f00;
+            opacity: 0.7;
+        }
+
+        /* Línea de tiempo - NUEVO DISEÑO CON IMÁGENES */
+        #timeline {
+            padding: 50px 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+        .timeline-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .timeline-container:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 3px;
+            background: #d23669;
+            transform: translateX(-50%);
+        }
+        .timeline-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        .timeline-item:nth-child(odd) {
+            flex-direction: row-reverse;
+        }
+        .timeline-content {
+            width: 45%;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .timeline-date {
+            font-weight: bold;
+            color: #d23669;
+            margin-bottom: 10px;
+        }
+        .timeline-img {
+            width: 45%;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .timeline-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        .timeline-img:hover img {
+            transform: scale(1.05);
+        }
+        .timeline-item:before {
+            content: '❤';
+            position: absolute;
+            left: 50%;
+            top: 20px;
+            transform: translateX(-50%);
+            color: #d23669;
+            font-size: 1.5rem;
+            background: white;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        /* Cupones */
+        #coupons {
+            padding: 50px 20px;
+            background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+        }
+        .coupon-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .coupon {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            width: 250px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        .coupon:hover {
+            transform: translateY(-10px);
+        }
+        .coupon h3 {
+            color: #d23669;
+            border-bottom: 1px dashed #d23669;
+            padding-bottom: 10px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .timeline-container:before {
+                left: 30px;
+            }
+            .timeline-item, .timeline-item:nth-child(odd) {
+                flex-direction: column;
+            }
+            .timeline-content, .timeline-img {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+            .timeline-item:before {
+                left: 30px;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Portada -->
+    <section id="cover">
+        <h1>¡Happy Birthday, Mi More!</h1>
+        <p class="message">"A la mujer que ilumina mis días con su sonrisa y su corazón de oro. Mi more hermosa, mi futura esposita."</p>
+        <!-- Confeti se generará con JS -->
+    </section>
+
+    <!-- Línea de tiempo CON IMÁGENES -->
+    <section id="timeline">
+        <h2>Momentos Favoritos</h2>
+        <div class="timeline-container">
+            <!-- Primer momento -->
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">1 de Noviembre, 2022</div>
+                    <h3>Dia de Muertos</h3>
+                    <p>"Fue la primera vez que sentí una conexión tan profunda, esa magia de entendernos y reírnos juntos."</p>
+                </div>
+                <div class="timeline-img">
+                    <img src="https://i.ibb.co/W4kZ14wy/Whats-App-Image-2025-05-02-at-1-59-44-PM.jpg" alt="Whats-App-Image-2025-05-02-at-1-59-44-PM" border="0">
+                </div>
+            </div>
+            
+            <!-- Segundo momento -->
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">06 de Diciembre, 2023</div>
+                    <h3>Feria SNDLR</h3>
+                    <p>"De la mano en la cima de la montaña rusa, sintiendo que la vida sube y baja... Pero mientras estemos juntos, este viaje no tendrá fin."</p>
+                </div>
+                <div class="timeline-img">
+                    <img src="https://i.ibb.co/20c18qbM/Whats-App-Image-2025-05-02-at-1-54-54-PM-1.jpg" alt="Whats-App-Image-2025-05-02-at-1-54-54-PM-1" border="0">
+                </div>
+            </div>
+            
+            <!-- Tercer momento (ejemplo) -->
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">31 de Enero, 2024</div>
+                    <h3>Puebla y Cholula</h3>
+                    <p>"Ese día quedó grabado en mi memoria como uno de los más hermosos. Nos abandonamos al momento, sin prisas ni planes, y la magia hizo lo demás: cada risa, cada mirada y cada instante tejieron una perfección efímera. Fue tan sublime que, al revisar las fotos, me resultó imposible elegir un solo instante favorito... ¿Cómo capturar la plenitud de un día que lo fue todo?"</p>
+                </div>
+                <div class="timeline-img">
+                    <img src="https://i.ibb.co/xqHTJwC5/Whats-App-Image-2025-05-02-at-2-18-00-PM.jpg" alt="Whats-App-Image-2025-05-02-at-2-18-00-PM" border="0">
+                </div>
+            </div>
+            
+            <!-- Añade más momentos aquí -->
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">13 de Enero, 2025</div>
+                    <h3>Nostalgia</h3>
+                    <p>"Este día me transportó a nuestra primera vez en el centro de Puebla. ¿Cuántos años han pasado? Y aún tus ojos brillan igual, tu sonrisa sigue robándome el aliento. Gracias por estos momentos mágicos que se acumulan como estrellas - no bastarían álbumes para guardarlos todos. Y lo mejor... sé que esto apenas comienza."</p>
+                </div>
+                <div class="timeline-img">
+                    <img src="https://i.ibb.co/ynct5nhY/Whats-App-Image-2025-05-02-at-1-54-53-PM.jpg" alt="Whats-App-Image-2025-05-02-at-1-54-53-PM" border="0">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cupones -->
+    <section id="coupons">
+        <h2>Elige tu GIF asi for you</h2>
+        <div class="coupon-container">
+            <div class="coupon">
+                <h3>Cena en La Chori</h3>
+                <p>Incluye una Chori Acapulqueña de las que son tus fav. y una Coca (esta se puede cambiar por una cheve).</p>
+                <small>Válido por 1 mes</small>
+            </div>
+            <div class="coupon">
+                <h3>Cena en Luiguis Pizzas</h3>
+                <p>Incluye una pizza Hawaiana, bebida de tu eleccion y un postre (unos dulces bsos).</p>
+                <small>Válido por 1 mes</small>
+            </div>
+            <div class="coupon">
+                <h3>Renta de Airbnb</h3>
+                <p>Incluye un dia en una casita como si ya vivieramos juntikos</p>
+                <small>Válido por 1 mes</small>
+            </div>
+            <!-- Añade más cupones -->
+        </div>
+    </section>
+
+    <script>
+        // Confeti animado
+        function createConfetti() {
+            const colors = ['#d23669', '#ff9a9e', '#a18cd1', '#fbc2eb', '#ffecb3'];
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.left = Math.random() * window.innerWidth + 'px';
+            confetti.style.top = '-10px';
+            confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+            document.getElementById('cover').appendChild(confetti);
+
+            let position = -10;
+            let rotation = Math.random() * 360;
+            const fallInterval = setInterval(() => {
+                position += 5;
+                rotation += 5;
+                confetti.style.top = position + 'px';
+                confetti.style.transform = `rotate(${rotation}deg)`;
+
+                if (position > window.innerHeight) {
+                    clearInterval(fallInterval);
+                    confetti.remove();
+                }
+            }, 20);
+        }
+
+        // Generar confeti cada 100ms
+        setInterval(createConfetti, 100);
+
+        // Opcional: Efecto al hacer clic en cupones
+        document.querySelectorAll('.coupon').forEach(coupon => {
+            coupon.addEventListener('click', () => {
+                coupon.style.backgroundColor = '#ffecb3';
+                coupon.querySelector('h3').textContent += ' ✔';
+            });
+        });
+    </script>
+</body>
+</html>
